@@ -28,7 +28,7 @@ songs.get("/:id", async (req, res) => {
   } else {
     res.status(400).json({error : "not found "})
   }
-})
+});
 
 //CREATE
 songs.post("/", checkName, checkBoolean, async (req, res) => {
@@ -47,7 +47,7 @@ songs.delete("/:id", async (req, res) => {
   if (deletedSong.id) {
      res.status(200).json(deletedSong);
   } else {
-    res.status(400).json("Song not found")
+    res.status(400).json("Song not found");
   }
 });
 
@@ -55,8 +55,8 @@ songs.delete("/:id", async (req, res) => {
 songs.put("/:id", checkName, checkBoolean, async (req, res) => {
   const { id } = req.params;
   const updatedSong = await updateSong(id, req.body);
-  res.status(200).json(updatedSong)
-})
+  res.status(200).json(updatedSong);
+});
 
 
 module.exports = songs;
