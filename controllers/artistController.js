@@ -1,5 +1,6 @@
 const express = require("express");
-const albums = express.Router();
+const artists = express.Router();
+
 const { checkName, checkBoolean, validateURL } = require("../validations/checkSongs");
 const { 
   getAllArtists, 
@@ -8,8 +9,15 @@ const {
   deleteArtist, 
   updateArtist } = require("../queries/artists");
 
+  const songController = require('./songController')
+  // const albumController = require('./albumController')
+
+//MIDDLEWARE
+artists.use('/:artistId/songs', songController)
+
+
 // INDEX
-artist.get("/", async (req, res) => {
+artists.get("/", async (req, res) => {
   const allArtists = await getAllArtists();
   if (allArtists[0]) {
     res.status(200).json(allArtists);
@@ -52,7 +60,7 @@ artists.delete("/:id", async (req, res) => {
 });
 
 //UPDATE
-songs.put("/:id", checkName, checkBoolean, async (req, res) => {
+artists.put("/:id", checkName, checkBoolean, async (req, res) => {
   const { id } = req.params;
   const updatedArtist = await updateArtist(id, req.body);
   res.status(200).json(updatedArtist);

@@ -1,5 +1,5 @@
 const express = require("express");
-const albums = express.Router();
+const albums = express.Router({ mergeParams: true});
 const { checkName, checkBoolean, validateURL } = require("../validations/checkSongs");
 const { 
   getAllAlbums, 
@@ -31,7 +31,7 @@ albums.get("/:id", async (req, res) => {
 });
 
 //CREATE
-songs.post("/", checkName, checkBoolean, async (req, res) => {
+albums.post("/", checkName, checkBoolean, async (req, res) => {
   try {
     const album = await createAlbum(req.body);
     res.status(200).json(album)

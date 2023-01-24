@@ -2,7 +2,8 @@
  // DEPENDENCIES
  const cors = require("cors");
  const express = require("express");
- const songController = require("./controllers/songController.js");
+//  const songController = require("./controllers/songController.js");
+const artistController = require("./controllers/artistController.js");
  
  // CONFIGURATION
  const app = express();
@@ -10,7 +11,8 @@
  // MIDDLEWARE
  app.use(cors());
  app.use(express.json());
- app.use("/songs", songController)
+//  app.use("/songs", songController)
+app.use("/artists", artistController)
  
  // ROUTES
  app.get("/", (req, res) => {

@@ -1,5 +1,5 @@
 const express = require("express");
-const songs = express.Router();
+const songs = express.Router({ mergeParams: true});
 const { checkName, checkBoolean, validateURL } = require("../validations/checkSongs");
 const { 
   getAllSongs, 
@@ -8,15 +8,24 @@ const {
   deleteSong, 
   updateSong } = require("../queries/songs");
 
+  // const artistController = require('./artistController')
+  //   const albumController = require('./albumController')
+
+    //MIDDLEWARE
+    // songs.use('/:songId/artists', artistController)
+    // songs.use('/:songId/albums', albumController)
+
+
+  
 // INDEX
 songs.get("/", async (req, res) => {
-  const allSongs = await getAllSongs();
-  if (allSongs[0]) {
+  const { artistId  } = req.params //testing merge
+  try  {
+    const allSongs = await getAllSongs(artistId);
     res.status(200).json(allSongs);
-  } else {
+  } catch (error) {
     res.status(500).json({ error: "server error" });
-  }
-});
+  }});
 
 //SHOW
 songs.get("/:id", async (req, res) => {
