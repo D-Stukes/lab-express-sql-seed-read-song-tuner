@@ -12,3 +12,27 @@ CREATE TABLE songs(
  is_favorite BOOLEAN
 );
 
+
+DROP TABLE IF EXISTS artists;
+
+CREATE TABLE artists (
+ id SERIAL PRIMARY KEY,
+ name TEXT,
+ album TEXT,
+ song_id INTEGER REFERENCES songs (id)
+ ON DELETE CASCADE
+);
+
+
+DROP TABLE IF EXISTS albums;
+
+CREATE TABLE albums (
+ id SERIAL PRIMARY KEY,
+ title TEXT,
+ artist TEXT,
+ year TEXT,
+ artist_id INTEGER REFERENCES artists (id)
+ ON DELETE CASCADE,
+ song_id INTEGER REFERENCES songs (id)
+ ON DELETE CASCADE
+);
