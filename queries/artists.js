@@ -3,7 +3,7 @@ const db = require("../db/dbConfig.js");
 //INDEX
 const getAllArtists = async () => {
     try {
-      const allArtists = await db.any('SELECT * FROM Artists');
+      const allArtists = await db.any('SELECT * FROM artists');
       return allArtists;
     } catch (error) {
       return error;
@@ -24,7 +24,7 @@ const getArtist = async (id) => {
 const createArtist = async (artist) => {
 try {
 const newArtist = await db.one( "INSERT INTO artists(name, album) VALUES($1, $2) RETURNING *",
-[artist.name, artist.album, song_id]
+[artist.name, artist.album]
 );
   return newArtist;
   } catch (error) {
@@ -50,7 +50,7 @@ const updateArtist = async (id, artist) => {
   try {
   const updatedArtist = await db.one( 
       "UPDATE artists SET name=$1, album=$2, WHERE id=$3 RETURNING *",
-  [artist.name, artist.album ]
+  [artist.name, artist.album, id ]
   );
   return updatedArtist;
   } catch (error) {

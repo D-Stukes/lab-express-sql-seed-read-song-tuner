@@ -1,5 +1,6 @@
 const express = require("express");
-const songs = express.Router({ mergeParams: true});
+const songs = express.Router()
+// const songs = express.Router({ mergeParams: true});
 const { checkName, checkBoolean, validateURL } = require("../validations/checkSongs");
 const { 
   getAllSongs, 
@@ -18,14 +19,24 @@ const {
 
   
 // INDEX
-songs.get("/", async (req, res) => {
-  const { artistId  } = req.params //testing merge
-  try  {
-    const allSongs = await getAllSongs(artistId);
-    res.status(200).json(allSongs);
-  } catch (error) {
-    res.status(500).json({ error: "server error" });
-  }});
+
+  songs.get("/", async (req, res) => {
+    const allSongs = await getAllSongs();
+    if (allSongs[0]) {
+      res.status(200).json(allSongs);
+    } else {
+   res.status(500).json({ error: "server error" });
+    }
+  });
+
+// songs.get("/", async (req, res) => {
+//   const { artistId  } = req.params //testing merge
+//   try  {
+//     const allSongs = await getAllSongs(artistId);
+//     res.status(200).json(allSongs);
+//   } catch (error) {
+//     res.status(500).json({ error: "server error" });
+//   }});
 
 //SHOW
 songs.get("/:id", async (req, res) => {
@@ -62,9 +73,13 @@ songs.delete("/:id", async (req, res) => {
 
 //UPDATE
 songs.put("/:id", checkName, checkBoolean, async (req, res) => {
-  const { id } = req.params;
-  const updatedSong = await updateSong(id, req.body);
-  res.status(200).json(updatedSong);
+  try {
+    const { id } = req.params;
+    const updatedSong = await updateSong(id, req.body);
+    res.status(200).json(updatedSong);
+    console.log('changed song',req.body)
+} catch(error) {
+  res.status(404).json({error: "id not found"})}
 });
 
 
