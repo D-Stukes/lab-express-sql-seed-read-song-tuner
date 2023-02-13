@@ -1,3 +1,19 @@
+# DEPLOYMENT LINKS
+## (Pending)
+Please note: I had to pause to setup my current solo project in time for Monday 2/13. I have deployed the backend, and will return to deploy the database and frontend. 
+
+#### PSQL DATABASE COMMAND FOR VSCODE TERMINAL:
+PGPASSWORD=wn7BVBKFs4VwU0be8FAw4jJ5Pp4eYbCG psql -h dpg-cfl0k0pa6gducthjet20-a.ohio-postgres.render.com -U tuner_app_backend_db_user tuner_app_backend_db
+
+# GITHUB LINKS
+## frontend:
+#### https://github.com/D-Stukes/lab-express-tuner-app-front-end
+## backend:  
+#### https://github.com/D-Stukes/lab-express-sql-seed-read-song-tuner
+
+
+
+
 # Tuner Full Stack Application
 
 Let's make our own music playlist app!
