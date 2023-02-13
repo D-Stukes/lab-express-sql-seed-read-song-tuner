@@ -1,8 +1,11 @@
 # DEPLOYMENT LINKS
-## (Pending)
-Please note: I had to pause to setup my current solo project in time for Monday 2/13. I have deployed the backend, and will return to deploy the database and frontend. 
-
-#### PSQL DATABASE COMMAND FOR VSCODE TERMINAL:
+## Frontend
+#### 
+## Backend
+#### https://lab-express-sql-seed-read-song-tuner.onrender.com/
+## PostGreSQL Database
+#### https://dashboard.render.com/d/dpg-cfl0k0pa6gducthjet20-a/info
+### PSQL DATABASE COMMAND FOR VSCODE TERMINAL:
 PGPASSWORD=wn7BVBKFs4VwU0be8FAw4jJ5Pp4eYbCG psql -h dpg-cfl0k0pa6gducthjet20-a.ohio-postgres.render.com -U tuner_app_backend_db_user tuner_app_backend_db
 
 # GITHUB LINKS
